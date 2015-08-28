@@ -11,7 +11,7 @@ angular.module('itunesBooksApp')
   .controller('MainCtrl', function ($scope, $http) {
 
   	// for only one call for each author
-  	$scope.bookArray = new Array();
+  	$scope.bookArray = [];
 
   	$scope.selectAuthor = function(name) {
   		$scope.author = name;
@@ -20,8 +20,11 @@ angular.module('itunesBooksApp')
   		if (!$scope.bookArray[name]) {
 			var req = {
 				method: 'GET',
-				url: 'https://itunes.apple.com/search?country=gb&term=' + $scope.author + '&media=ebook&limit=10'
-			}
+				url: 'https://itunes.apple.com/search?country=gb&term=' + $scope.author + '&media=ebook&limit=10',
+		        headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+		        }
+			};
 
 			$http(req).then(function(response){
 				// success
