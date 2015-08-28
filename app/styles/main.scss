@@ -36,6 +36,8 @@ $border: 4px;
   -moz-background-clip: padding !important;  
   -webkit-background-clip: padding !important;
   outline: none !important;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 html, body {
@@ -81,6 +83,19 @@ body {
   @include gradient(#00abea, #0077d2);
 }
 
+@media (max-width: 450px) {
+  .btn {
+    display: block;
+    width: 100%;
+    &:first-child {
+      @include border-radius($border, $border, 0px, 0px);
+    }
+    &:last-child {
+      @include border-radius(0px, 0px, $border, $border);
+    }
+  }
+}
+
 #find {
   margin: 10px auto;
   width: 100%;
@@ -102,8 +117,6 @@ input {
   @include border-radius($border, $border, $border, $border);
   width: 100%;
   display: block;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   color: grey;
   box-sizing: border-box;
   height: 37px;
@@ -125,8 +138,6 @@ input {
   display: table;
   width: 100%;
   border: 1px solid #ddd;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   @include border-radius($border, $border, $border, $border);
 }
 
