@@ -1,28 +1,38 @@
 <div id="btns">
-  <div class="btn" ng-class="{'active':author == 'Hemingway'}" ng-click="selectAuthor('Hemingway')">Ernest  Hemingway</div>
-  <div class="btn" ng-class="{'active':author == 'Dickens'}" ng-click="selectAuthor('Dickens')">Charles Dickens</div>
-  <div class="btn" ng-class="{'active':author == 'Shakespeare'}" ng-click="selectAuthor('Shakespeare')">William Shakespeare</div>
+  <div class="btn" ng-class="{'active':author == 'hemingway'}" ng-click="selectAuthor('hemingway')">Ernest  Hemingway</div>
+  <div class="btn" ng-class="{'active':author == 'dickens'}" ng-click="selectAuthor('dickens')">Charles Dickens</div>
+  <div class="btn" ng-class="{'active':author == 'shakespeare'}" ng-click="selectAuthor('shakespeare')">William Shakespeare</div>
 </div>
 
 <div id="find">
   <div id="icon-find"></div>
-  <input type="text" />
+  <input type="text" ng-model="search" />
 </div>
 
-<div id="table">
-    <div class="row fields">
-        <div class="cell1">Title</div>
-        <div class="cell2">Description</div>
-        <div class="cell3">Price</div>
+<div id="table" ng-hide="error">
+  <div class="row fields">
+    <div class="cell1" ng-click="order('trackName')">
+      <div>Title</div>
+      <div ng-show="predicate === 'trackName'" ng-class="{'triangle-up':reverse,'triangle-down':!reverse}"></div>
     </div>
-    <div class="row">
-        <div class="cell1">title</div>
-        <div class="cell2">description</div>
-        <div class="cell3">pryce</div>
+    <div class="cell2" ng-click="order('description')">
+      <div>Description</div>
+      <div ng-show="predicate === 'description'" ng-class="{'triangle-up':reverse,'triangle-down':!reverse}"></div>
     </div>
-    <div class="row">
-        <div class="cell1">title</div>
-        <div class="cell2">description</div>
-        <div class="cell3">pryce</div>
+    <div class="cell3" ng-click="order('price')">
+      <div>Price</div>
+      <div ng-show="predicate === 'price'" ng-class="{'triangle-up':reverse,'triangle-down':!reverse}"></div>
     </div>
+  </div>
+  <div class="row" ng-repeat="book in books | filter:search | orderBy:predicate:reverse">
+    <div class="cell1"><a href="{{book.trackViewUrl}}" target="_blank" ng-bind="book.trackName"></a></div>
+    <div class="cell2" ng-bind-html="book.description"></div>
+    <div class="cell3" ng-bind="book.formattedPrice"></div>
+  </div>
+</div>
+
+<img id="loading" src="images/loading.gif" ng-if="!books && !error" />
+
+<div id="error" ng-show="error">
+  An error ocurred, please try again later
 </div>
