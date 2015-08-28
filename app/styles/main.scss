@@ -1,89 +1,156 @@
 // bower:scss
 // endbower
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+// FONTS
+@font-face {
+    font-family: 'Normal';
+    src: url('fonts/Aller_Lt.ttf');
+}
+@font-face {
+    font-family: 'Regular';
+    src: url('fonts/Aller_Rg.ttf');
+}
+@font-face {
+    font-family: 'Black';
+    src: url('fonts/Aller_Bd.ttf');
+}
+@font-face {
+    font-family: 'Title';
+    src: url('fonts/AllerDisplay.ttf');
+}
+// END FONTS
+
+// VARIABLES
+$fontBody: 20;
+$border: 4px;
+// END VARIABLES
+
+// MIXINS
+@mixin font-size($value) {
+  font-size: $value*$fontBody + px;
+}
+
+@mixin gradient($color1, $color2) {
+  background: $color1;
+  background-image: -webkit-linear-gradient(top, $color1, $color2);
+  background-image: -moz-linear-gradient(top, $color1, $color2);
+  background-image: -ms-linear-gradient(top, $color1, $color2);
+  background-image: -o-linear-gradient(top, $color1, $color2);
+  background-image: linear-gradient(to bottom, $color1, $color2);
+}
+
+@mixin border-radius($radius1, $radius2, $radius3, $radius4) {
+  -webkit-border-radius: $radius1 $radius2 $radius3 $radius4;
+  -moz-border-radius: $radius1 $radius2 $radius3 $radius4;
+  -o-border-radius: $radius1 $radius2 $radius3 $radius4;
+  -ms-border-radius: $radius1 $radius2 $radius3 $radius4;
+  border-radius: $radius1 $radius2 $radius3 $radius4;
+}
+// END MIXINS
+
+* {
+  margin: 0;
+  padding: 0;
+  background-clip: padding-box !important;  
+  -moz-background-clip: padding !important;  
+  -webkit-background-clip: padding !important;
+  outline: none !important;
+}
+
+html, body {
+  height:100%
 }
 
 body {
-  padding: 0;
+  @include font-size(1);
+  font-family: 'Normal';
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
+#container {
+  padding: 20px;
 }
 
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
-  }
+#btns {
+ display: table;
+ margin: 0;
+ width: 100%;
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
+.btn {
+  color: #fff;
+  cursor: pointer;
+  @include gradient(#cbcbcb, #999);
+  padding: 10px;
+  display: table-cell;
+  width: 33.33%;
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+  vertical-align: middle;
+  font-family: 'Black';
+  &:first-child {
+    @include border-radius($border, 0px, 0px, $border);
+  }
+  &:last-child {
+    @include border-radius(0px, $border, $border, 0px);
   }
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-
-  p + h4 {
-    margin-top: 28px;
-  }
+.btn.active {
+  @include gradient(#00abea, #0077d2);
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
+#find {
+  margin: 10px auto;
+  width: 100%;
+}
 
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+#icon-find {
+  background-image: url(../images/find.svg);
+  background-size: 100% 100%;
+  width: 37px;
+  height: 37px;
+  position: absolute;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 10px 10px 10px 37px;
+  border: 1px solid #ddd;
+  @include border-radius($border, $border, $border, $border);
+  width: 100%;
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  color: grey;
+  box-sizing: border-box;
+  font-family: 'Normal';
+  @include font-size(0.8);
+}
+
+#table {
+  display: table;
+  width: 100%;
+  border: 1px solid #ddd;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  @include border-radius($border, $border, $border, $border);
+}
+
+.row {
+  display: table-row;
+  height: 100%;
+}
+
+.cell1, .cell2, .cell3 {
+  display: table-cell;
+  width: 33.33%;
+  height: 100%;
+  border: 1px solid #ddd;
+  @include font-size(0.8);
+  padding: 5px;
+}
+
+.fields {
+  text-align: center;
+  font-family: 'Black';
 }
