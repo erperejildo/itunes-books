@@ -1,12 +1,23 @@
 # itunes-books
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.11.1.
+iTunes API with some books. Build with AngularJS.
 
-## Build & development
+## Technologies used
 
-Run `grunt` for building and `grunt serve` for preview.
+- Scaffolding with Yeoman.
+- Development with AngularJS. Ng-animate for show data with fade.
+- Style with CSS3 and Sass.
+- Grunt as task runner.
 
-## Testing
+## Local project
 
-Running `grunt test` will run the unit tests with karma.
+Download the repository and run `npm install & bower install`.<br>
+Run `grunt serve` to run the server in local.<br>
+To compile the app run `grunt build` and open the `dist` folder.
+
+## Online project
+
+Visit http://danielrodriguez.eu/itunes-books/
+ <p>
+ 
+Tested in Chrome, Firefox, Explorer and Opera.
