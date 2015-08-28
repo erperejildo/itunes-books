@@ -26,19 +26,21 @@ angular.module('itunesBooksApp')
 		        }
 			};
 
-			$http(req).then(function(response){
-				// success
-				$scope.error = false;
-				$scope.books = response.data.results;
-				$scope.bookArray[name] = response.data.results;
-			}, function(){
-				// error
-				$scope.error = true;
+			$http.jsonp('https://itunes.apple.com/search?country=gb&term=' + $scope.author + '&media=ebook&limit=10', {
+			    params: {
+			      'callback': 'JSON_CALLBACK'
+			    }
+			}).success(function(response) {
+			    $scope.error = false;
+				$scope.books = response.results;
+				$scope.bookArray[name] = response.results;
+			}).error(function(response) {
+			    $scope.error = true;
 			});
+
 		} else {
 			$scope.books = $scope.bookArray[name];
 		}
-
   	};
 
   	// select the first author by default
