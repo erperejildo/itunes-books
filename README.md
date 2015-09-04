@@ -5,7 +5,7 @@ iTunes API with some books. Build with AngularJS.
 ## Technologies used
 
 - Scaffolding with Yeoman.
-- Development with AngularJS. Ng-animate for show data with fade.
+- Development with AngularJS.
 - Style with CSS3 and Sass.
 - Grunt as task runner.
 
@@ -17,7 +17,7 @@ To compile the app run `grunt build` and open the `dist` folder.
 
 ## Online project
 
-Visit http://danielrodriguez.eu/itunes-books/
+Visit http://danielrodriguez.eu/player
  <p>
  
 Tested in Chrome, Firefox, Explorer and Opera.
